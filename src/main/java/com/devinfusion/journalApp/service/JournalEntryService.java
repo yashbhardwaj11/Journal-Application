@@ -2,6 +2,8 @@ package com.devinfusion.journalApp.service;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
+
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,17 +17,17 @@ public class JournalEntryService {
     @Autowired 
     private JournalEntryRepository journalEntryRepository;
 
-    public void saveEntry(JournalEntry journalEntry){
+    public JournalEntry saveEntry(JournalEntry journalEntry){
         journalEntry.setDate(LocalDateTime.now());
-        journalEntryRepository.save(journalEntry);
+        return journalEntryRepository.save(journalEntry);
     }
 
     public List<JournalEntry> getAll(){
         return journalEntryRepository.findAll();
     }
 
-    public JournalEntry getJournalEntryById(ObjectId id){
-        return journalEntryRepository.findById(id).orElse(null);
+    public Optional<JournalEntry> getJournalEntryById(ObjectId id){
+        return journalEntryRepository.findById(id);
     }
 
     public void deleteById(ObjectId id){
