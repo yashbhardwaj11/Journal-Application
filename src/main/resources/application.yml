@@ -1,7 +1,21 @@
 spring:
   profiles:
     active: dev
+  
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: technowebofficial01@gmail.com
+    password: "***********"
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+
 
 weather:
   api:
     key: 61c516970bab2aa5ccdc823191d242a8
+
